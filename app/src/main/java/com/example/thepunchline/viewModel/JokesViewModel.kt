@@ -20,9 +20,9 @@ class JokesViewModel @Inject constructor(private val apiService: ApiService) : V
     private val _jokesResponse = MutableLiveData<Jokes>()
     var jokesResponse: LiveData<Jokes> = _jokesResponse
 
-    fun fetchJokes(category: String) {
+    fun fetchJokes(category: String, flags: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            apiService.getJokesFromApi(category).enqueue(object : Callback<Jokes> {
+            apiService.getJokesFromApi(category, flags).enqueue(object : Callback<Jokes> {
                 override fun onResponse(call: Call<Jokes>, response: Response<Jokes>) {
                     _jokesResponse.value = response.body()
                 }

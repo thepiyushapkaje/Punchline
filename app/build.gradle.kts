@@ -52,6 +52,8 @@ android {
 }
 
 dependencies {
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.runtime.livedata)
     implementation (libs.hilt.android)
     kapt (libs.hilt.compiler)
     implementation (libs.kotlin.stdlib.jdk8)
