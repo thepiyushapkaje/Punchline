@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Blague"
         tools:targetApi="31">
         <activity
-            android:name="com.example.thepunchline.ui.dashboard.DashBoardActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Blague">
 
@@ -25,12 +25,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name="com.example.thepunchline.ui.jokes.JokesActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Blague">
 
         </activity>
     </application>

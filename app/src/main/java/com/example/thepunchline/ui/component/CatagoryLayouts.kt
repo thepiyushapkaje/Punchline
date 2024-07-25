@@ -1,4 +1,4 @@
-package com.example.thepunchline.ui.dashboard.component
+package com.example.thepunchline.ui.component
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn

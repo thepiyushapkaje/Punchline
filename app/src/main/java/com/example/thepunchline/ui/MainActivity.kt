@@ -1,6 +1,5 @@
-package com.example.thepunchline.ui.dashboard
+package com.example.thepunchline.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,22 +12,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DashBoardActivity : ComponentActivity() {
-    @Inject
-    lateinit var jokesPreferenceHelper: JokesPreferenceHelper
-    private val viewModel: JokesViewModel by viewModels()
+class MainActivity : ComponentActivity() {
+    @Inject lateinit var jokesPreferenceHelper: JokesPreferenceHelper
+    private val viewModel:JokesViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        jokesPreferenceHelper.clearPreferences()
         setContent {
             ThePunchlineTheme {
                 Navigation(viewModel = viewModel, jokesPreferenceHelper = jokesPreferenceHelper)
             }
         }
-    }
-
-    @SuppressLint("MissingSuperCall")
-    override fun onDestroy() {
-        jokesPreferenceHelper.clearPreferences()
     }
 }
