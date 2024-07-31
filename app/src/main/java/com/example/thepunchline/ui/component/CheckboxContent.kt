@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.thepunchline.ui.theme.KanitBlack
 
 @Composable
 fun CheckboxDialogContent(checkboxes: List<String>, checkedStates: List<Boolean>, onCheckboxChange: (Int, Boolean) -> Unit) {
@@ -22,7 +23,7 @@ fun CheckboxDialogContent(checkboxes: List<String>, checkedStates: List<Boolean>
                     onCheckedChange = { onCheckboxChange(index, it) },
                     modifier = Modifier.padding(end = 8.dp)
                 )
-                Text(text = label)
+                Text(text = label, fontFamily = KanitBlack)
             }
         }
     }

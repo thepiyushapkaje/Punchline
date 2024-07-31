@@ -47,14 +47,15 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
         Column {
             Row {
                 TopAppBar(
-                    title = { Text("The Punchline", fontFamily = KanitBlack) },
+                    title = { Text("The Punchline", fontFamily = KanitBlack, color = Color.Black) },
                     actions = {
                         IconButton(onClick = {
                             showListView = toggleShowListView(showListView)
                         }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.list_vector),
-                                contentDescription = "Filter"
+                                tint = Color.Black,
+                                contentDescription = "Filter",
                             )
                         }
                         IconButton(onClick = {
@@ -62,6 +63,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                         }) {
                             Icon(
                                 painter = painterResource(id = R.drawable.baseline_filter_list),
+                                tint = Color.Black,
                                 contentDescription = "Filter"
                             )
                         }
@@ -87,6 +89,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
     if (showFilterView) {
         AlertDialog(
             onDismissRequest = { showFilterView = false },
+            title = { Text(text = "Opt Out Categories", fontFamily = KanitBlack) },
             text = {
                 CheckboxDialogContent(checkboxes, checkedStates.value) { index, isChecked ->
                     checkedStates.value = checkedStates.value.toMutableList().apply {
@@ -110,7 +113,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                         contentColor = Color.Black
                     )
                 ) {
-                    Text(text = "Confirm")
+                    Text(text = "Confirm", fontFamily = KanitBlack)
                 }
             },
             dismissButton = {
@@ -120,7 +123,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                         contentColor = Color.Black
                     )
                 ) {
-                    Text(text = "Dismiss")
+                    Text(text = "Dismiss", fontFamily = KanitBlack)
                 }
             }
         )

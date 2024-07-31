@@ -2,6 +2,7 @@ package com.example.thepunchline.di
 
 import android.content.Context
 import com.example.thepunchline.api.ApiService
+import com.example.thepunchline.util.AppConstant
 import com.example.thepunchline.util.JokesPreferenceHelper
 import dagger.Module
 import dagger.Provides
@@ -30,7 +31,7 @@ object AppModule {
 
     @Provides
     fun retrofit(): Retrofit{
-        return Retrofit.Builder().baseUrl("https://v2.jokeapi.dev/")
+        return Retrofit.Builder().baseUrl(AppConstant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 

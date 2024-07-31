@@ -28,7 +28,7 @@ fun Navigation(viewModel: JokesViewModel, jokesPreferenceHelper: JokesPreference
             })
         ) { entry ->
             entry.arguments?.getString("name")
-                ?.let { JokesScreen(category = it, jokesPreferenceHelper = jokesPreferenceHelper, viewModel = viewModel) }
+                ?.let { JokesScreen(navController = navController, category = it, jokesPreferenceHelper = jokesPreferenceHelper, viewModel = viewModel) }
         }
     }
 }
