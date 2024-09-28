@@ -1,6 +1,8 @@
 package com.nextbigthing.thepunchline.di
 
 import android.content.Context
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.nextbigthing.thepunchline.api.ApiService
 import com.nextbigthing.thepunchline.util.AppConstant
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
@@ -38,5 +40,10 @@ object AppModule {
     @Provides
     fun apiService(retrofit: Retrofit): ApiService{
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    fun firebaseInstance(): DatabaseReference {
+        return FirebaseDatabase.getInstance().getReference("AppData")
     }
 }

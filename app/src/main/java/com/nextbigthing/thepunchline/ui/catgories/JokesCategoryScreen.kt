@@ -39,7 +39,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
     var showListView by remember { mutableStateOf(false) }
     var showFilterView by remember { mutableStateOf(false) }
     val checkboxes = listOf("NSFW", "Religious", "Political", "Racist", "Sexist", "Explicit")
-    val checkedStates = remember { mutableStateOf(List(checkboxes.size) { false }) }
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = AppBackgroundColor
@@ -87,6 +87,14 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
         }
     }
     if (showFilterView) {
+        val initialSelectedItems =
+            jokesPreferenceHelper.getString("JOKES_FLAGS", "") // Replace with your selected items
+        val checkedStates = remember {
+            mutableStateOf(
+                checkboxes.map { it in initialSelectedItems }
+            )
+        }
+
         AlertDialog(
             onDismissRequest = { showFilterView = false },
             title = { Text(text = "Opt Out Categories", fontFamily = KanitBlack) },
@@ -96,7 +104,8 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                         this[index] = isChecked
                     }
                 }
-            }, modifier = Modifier.fillMaxWidth(),
+            },
+            modifier = Modifier.fillMaxWidth(),
             confirmButton = {
                 Button(
                     onClick = {
@@ -108,7 +117,8 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                             selectedItemsFiltering(selectedOptions)
                         )
                         showFilterView = false
-                    }, colors = ButtonDefaults.buttonColors(
+                    },
+                    colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black
                     )
@@ -118,7 +128,8 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
             },
             dismissButton = {
                 Button(
-                    onClick = { showFilterView = false }, colors = ButtonDefaults.buttonColors(
+                    onClick = { showFilterView = false },
+                    colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black
                     )
