@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.thepunchline"
+    namespace = "com.nextbigthing.thepunchline"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.thepunchline"
+        applicationId = "com.nextbigthing.thepunchline"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
