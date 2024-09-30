@@ -8,6 +8,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.window.DialogProperties
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -50,7 +57,7 @@ class MainActivity : ComponentActivity() {
                     val appId = snapshot.getValue(Int::class.java)
                     if (appId != null) {
                         if (appId>versionCode){
-                            Toast.makeText(this@MainActivity, "Update Available", Toast.LENGTH_SHORT).show()
+
                         }
                     }
                     Log.d("Firebase", "AppId: $appId")

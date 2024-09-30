@@ -1,5 +1,6 @@
 package com.nextbigthing.thepunchline.ui.catgories
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
@@ -21,7 +23,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.component.CenteredTextGrid
@@ -32,6 +37,7 @@ import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 import com.nextbigthing.thepunchline.util.AppConstant
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
+import kotlin.coroutines.coroutineContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -147,4 +153,52 @@ private fun toggleShowListView(showListView: Boolean): Boolean {
 
 private fun selectedItemsFiltering(selectedOptions: List<String>): String {
     return selectedOptions.joinToString(",")
+}
+
+@Composable
+fun UpdateAppDialog(onUpdateClick: () -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = { onDismiss() },
+        title = {
+            Text(text = "New Version Available")
+        },
+        text = {
+            Text("A new version of the app is available. Please update to enjoy the latest features and improvements.")
+        },
+        confirmButton = {
+            Button(onClick = { onUpdateClick() }) {
+                Text("Update")
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = { onDismiss() }) {
+                Text("Later")
+            }
+        },
+        properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
+    )
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewAppContent() {
+    AppContent()
+}
+
+@Composable
+fun AppContent() {
+    var showDialog by remember { mutableStateOf(true) }
+
+    if (showDialog) {
+        UpdateAppDialog(
+            onUpdateClick = {
+                // Handle update action
+                showDialog = false
+            },
+            onDismiss = {
+                // Handle dismiss action
+                showDialog = false
+            }
+        )
+    }
 }
