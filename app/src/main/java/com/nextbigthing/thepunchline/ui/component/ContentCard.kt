@@ -53,8 +53,8 @@ fun CenteredCard(title: String, description: String, onNextArticleClick: () -> U
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(Alignment.CenterVertically, false),
-                    fontSize = if (title.length > 60) 24.sp else if (title.length > 40) 34.sp else 44.sp,
-                    lineHeight = if (title.length > 60) 24.sp else if (title.length > 40) 34.sp else 44.sp,
+                    fontSize = if (title.length > 60) 32.sp else if (title.length > 40) 38.sp else 48.sp,
+                    lineHeight = if (title.length > 60) 32.sp else if (title.length > 40) 38.sp else 48.sp,
                     textAlign = TextAlign.Left,
                     fontFamily = KanitBlack,
                     softWrap = true
@@ -62,8 +62,8 @@ fun CenteredCard(title: String, description: String, onNextArticleClick: () -> U
                 Text(
                     text = description,
                     modifier = Modifier.fillMaxWidth(),
-                    fontSize = if (title.length > 60) 18.sp else if (title.length > 40) 28.sp else 38.sp,
-                    lineHeight = if (title.length > 60) 18.sp else if (title.length > 40) 28.sp else 38.sp,
+                    fontSize = if (title.length > 60) 26.sp else if (title.length > 40) 32.sp else 42.sp,
+                    lineHeight = if (title.length > 60) 26.sp else if (title.length > 40) 32.sp else 42.sp,
                     textAlign = TextAlign.Left,
                     fontFamily = KanitBlack,
                     color = Color.Gray,
