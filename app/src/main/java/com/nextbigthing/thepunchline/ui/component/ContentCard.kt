@@ -37,10 +37,11 @@ fun CenteredCard(title: String, description: String, onNextArticleClick: () -> U
         LocalContext.current.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Card(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
+            onClick = onNextArticleClick
         ) {
             Column(
                 modifier = Modifier
