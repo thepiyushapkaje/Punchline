@@ -39,7 +39,6 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
     var showListView by remember { mutableStateOf(false) }
     var showFilterView by remember { mutableStateOf(false) }
     val checkboxes = listOf("NSFW", "Religious", "Political", "Racist", "Sexist", "Explicit")
-
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = AppBackgroundColor
@@ -98,6 +97,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
         AlertDialog(
             onDismissRequest = { showFilterView = false },
             title = { Text(text = "Opt Out Categories", fontFamily = KanitBlack) },
+            containerColor = Color.White,
             text = {
                 CheckboxDialogContent(checkboxes, checkedStates.value) { index, isChecked ->
                     checkedStates.value = checkedStates.value.toMutableList().apply {
@@ -119,8 +119,8 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                         showFilterView = false
                     },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White,
-                        contentColor = Color.Black
+                        containerColor = Color.Gray,
+                        contentColor = Color.White
                     )
                 ) {
                     Text(text = "Confirm", fontFamily = KanitBlack)

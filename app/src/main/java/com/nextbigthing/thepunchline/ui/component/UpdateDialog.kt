@@ -17,6 +17,7 @@ import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 fun UpdateAppDialog(onUpdateClick: () -> Unit, onDismiss: () -> Unit) {
     AlertDialog(
         onDismissRequest = { onDismiss() },
+        containerColor = Color.White,
         title = {
             Text(text = "New Version Available",
                 fontFamily = KanitBlack)

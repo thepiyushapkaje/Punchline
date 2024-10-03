@@ -48,7 +48,7 @@ class MainActivity : ComponentActivity() {
                 fetchAppId(showUpdateDialog)
 
                 // Display your navigation
-                Navigation(viewModel = viewModel, jokesPreferenceHelper = jokesPreferenceHelper)
+                Navigation(viewModel = viewModel, jokesPreferenceHelper = jokesPreferenceHelper, context = this@MainActivity)
 
                 // Show the Update Dialog if necessary
                 if (showUpdateDialog.value) {

@@ -1,5 +1,6 @@
 package com.nextbigthing.thepunchline.ui.jokes
 
+import android.content.Context
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -18,7 +19,8 @@ fun JokesScreen(
     navController: NavController,
     category: String,
     jokesPreferenceHelper: JokesPreferenceHelper,
-    viewModel: JokesViewModel
+    viewModel: JokesViewModel,
+    context: Context
 ) {
     // Fetch jokes when the category changes
     val flags = jokesPreferenceHelper.getString("JOKES_FLAGS", "")
@@ -36,7 +38,8 @@ fun JokesScreen(
             CenteredCard(
                 title = title,
                 description = description,
-                onNextArticleClick = { viewModel.fetchJokes(category, flags) }
+                onNextArticleClick = { viewModel.fetchJokes(category, flags) },
+                context = context
             )
         }
     }

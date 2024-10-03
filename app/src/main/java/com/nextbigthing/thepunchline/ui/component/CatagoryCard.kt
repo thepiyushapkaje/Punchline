@@ -18,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -28,13 +29,16 @@ import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 
 @Composable
 fun CenteredTextCard(text: String, drawable: Int, onClick: () -> Unit) {
+
+    val configuration = LocalConfiguration.current
+    val screenWidthPx = (configuration.screenWidthDp / 2) - 10
     Card(
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
+            .height(screenWidthPx.dp)
             .padding(6.dp)
             .clickable { onClick() }
             // Set background color

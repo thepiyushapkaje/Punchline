@@ -3,6 +3,7 @@ package com.nextbigthing.thepunchline.ui.component
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +33,7 @@ import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 
 @Composable
-fun CenteredCard(title: String, description: String, onNextArticleClick: () -> Unit) {
+fun CenteredCard(title: String, description: String, onNextArticleClick: () -> Unit, context: Context) {
     val clipboard =
         LocalContext.current.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     Box(
@@ -87,6 +88,7 @@ fun CenteredCard(title: String, description: String, onNextArticleClick: () -> U
                     val textToCopy = title + "\n" + description
                     val clip = ClipData.newPlainText("label", textToCopy)
                     clipboard.setPrimaryClip(clip)
+                    Toast.makeText(context, "Joke Copied Successfully", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier
                     .height(50.dp)
