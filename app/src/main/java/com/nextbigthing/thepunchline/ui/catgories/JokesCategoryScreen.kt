@@ -4,6 +4,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -22,12 +24,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.component.CenteredTextGrid
 import com.nextbigthing.thepunchline.ui.component.CenteredTextList
 import com.nextbigthing.thepunchline.ui.component.CheckboxDialogContent
-import com.nextbigthing.thepunchline.ui.screens.Screen
+import com.nextbigthing.thepunchline.navigation.screens.Screen
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 import com.nextbigthing.thepunchline.util.AppConstant
@@ -52,9 +55,11 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                             showListView = toggleShowListView(showListView)
                         }) {
                             Icon(
-                                painter = painterResource(id = R.drawable.list_vector),
+                                painter = painterResource(
+                                    id = if (showListView) R.drawable.grid_icon else R.drawable.list_icon
+                                ),
                                 tint = Color.Black,
-                                contentDescription = "Filter",
+                                contentDescription = "Filter"
                             )
                         }
                         IconButton(onClick = {
@@ -64,6 +69,18 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                                 painter = painterResource(id = R.drawable.baseline_filter_list),
                                 tint = Color.Black,
                                 contentDescription = "Filter"
+                            )
+                        }
+                        IconButton(onClick = {
+                            navController.navigate(Screen.AboutScreen.route)
+                        }) {
+                            Icon(
+                                modifier = Modifier
+                                    .height(24.dp)
+                                    .width(24.dp),
+                                painter = painterResource(id = R.drawable.info_icon),
+                                tint = Color.Black,
+                                contentDescription = "Filter",
                             )
                         }
                     },
@@ -96,7 +113,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
 
         AlertDialog(
             onDismissRequest = { showFilterView = false },
-            title = { Text(text = "Opt Out Categories", fontFamily = KanitBlack) },
+            title = { Text(text = "Opt Out Categories", color = Color.Black, fontFamily = KanitBlack) },
             containerColor = Color.White,
             text = {
                 CheckboxDialogContent(checkboxes, checkedStates.value) { index, isChecked ->

@@ -9,9 +9,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.nextbigthing.thepunchline.navigation.screens.Screen
+import com.nextbigthing.thepunchline.ui.about.AboutScreen
 import com.nextbigthing.thepunchline.ui.catgories.MainScreen
 import com.nextbigthing.thepunchline.ui.jokes.JokesScreen
-import com.nextbigthing.thepunchline.ui.screens.Screen
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
 
@@ -30,6 +31,10 @@ fun Navigation(viewModel: JokesViewModel, jokesPreferenceHelper: JokesPreference
                 // Exit the app when back is pressed on Dashboard screen
                 (context as? Activity)?.finish()
             }
+        }
+        
+        composable(route = Screen.AboutScreen.route){
+            AboutScreen(navController = navController)
         }
 
         // Jokes Screen with navigation argument

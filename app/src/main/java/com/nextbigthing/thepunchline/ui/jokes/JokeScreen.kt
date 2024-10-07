@@ -9,7 +9,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavController
 import com.nextbigthing.thepunchline.ui.component.CenteredCard
 import com.nextbigthing.thepunchline.ui.component.CustomAppBar
-import com.nextbigthing.thepunchline.ui.screens.Screen
+import com.nextbigthing.thepunchline.navigation.screens.Screen
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
