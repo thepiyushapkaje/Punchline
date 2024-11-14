@@ -57,7 +57,7 @@ fun AboutScreen(navController: NavController) {
 
             // App Name
             Text(
-                text = "The Punchline",
+                text = "Punchline",
                 fontFamily = KanitBlack,
                 fontSize = 32.sp,
                 modifier = Modifier.padding(top = 16.dp),
@@ -66,7 +66,7 @@ fun AboutScreen(navController: NavController) {
 
             // Brief Description
             Text(
-                text = "The Punchline is your go-to app for quick, witty humor and entertainment.",
+                text = "Punchline is your go-to app for quick, witty humor and entertainment.",
                 textAlign = TextAlign.Center,
                 fontFamily = KanitBlack,
                 modifier = Modifier
@@ -74,7 +74,7 @@ fun AboutScreen(navController: NavController) {
                     .fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
 
             // Disclaimer Text for Jokes
             Text(

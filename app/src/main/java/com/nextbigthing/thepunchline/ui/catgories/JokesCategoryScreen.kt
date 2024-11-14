@@ -49,7 +49,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
         Column {
             Row {
                 TopAppBar(
-                    title = { Text("The Punchline", fontFamily = KanitBlack, color = Color.Black) },
+                    title = { Text("Punchline", fontFamily = KanitBlack, color = Color.Black) },
                     actions = {
                         IconButton(onClick = {
                             showListView = toggleShowListView(showListView)
