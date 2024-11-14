@@ -34,7 +34,7 @@ fun Navigation(viewModel: JokesViewModel, jokesPreferenceHelper: JokesPreference
         }
         
         composable(route = Screen.AboutScreen.route){
-            AboutScreen(navController = navController)
+            AboutScreen(contextT = context, navController = navController)
         }
 
         // Jokes Screen with navigation argument

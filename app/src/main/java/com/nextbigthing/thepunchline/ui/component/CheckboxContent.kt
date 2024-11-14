@@ -15,7 +15,11 @@ import androidx.compose.ui.unit.dp
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 
 @Composable
-fun CheckboxDialogContent(checkboxes: List<String>, checkedStates: List<Boolean>, onCheckboxChange: (Int, Boolean) -> Unit) {
+fun CheckboxDialogContent(
+    checkboxes: List<String>,
+    checkedStates: List<Boolean>,
+    onCheckboxChange: (Int, Boolean) -> Unit
+) {
     Column {
         checkboxes.forEachIndexed { index, label ->
             Row(

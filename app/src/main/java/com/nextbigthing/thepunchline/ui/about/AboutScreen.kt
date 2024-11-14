@@ -1,5 +1,8 @@
 package com.nextbigthing.thepunchline.ui.about
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,7 +32,7 @@ import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 
 @Composable
-fun AboutScreen(navController: NavController) {
+fun AboutScreen(navController: NavController, contextT: Context) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = AppBackgroundColor
@@ -70,7 +73,7 @@ fun AboutScreen(navController: NavController) {
                 textAlign = TextAlign.Center,
                 fontFamily = KanitBlack,
                 modifier = Modifier
-                    .padding(18 .dp)
+                    .padding(18.dp)
                     .fillMaxWidth()
             )
 
@@ -91,11 +94,18 @@ fun AboutScreen(navController: NavController) {
 
             // Privacy Policy Button
             Button(
-                onClick = {},
+                onClick = {
+                    contextT.startActivity(
+                        Intent(
+                            Intent.ACTION_VIEW,
+                            Uri.parse("https://www.termsfeed.com/live/a63c4c2d-1e37-4ea6-8549-9420f6c01c7a")
+                        )
+                    )
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .padding(20.dp,0.dp,20.dp,0.dp),
+                    .padding(20.dp, 0.dp, 20.dp, 0.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
                     contentColor = Color.Black
@@ -115,7 +125,7 @@ fun AboutScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
-                    .padding(20.dp,0.dp,20.dp,0.dp),
+                    .padding(20.dp, 0.dp, 20.dp, 0.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
                     contentColor = Color.Black

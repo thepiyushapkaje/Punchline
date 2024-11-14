@@ -25,8 +25,10 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject lateinit var jokesPreferenceHelper: JokesPreferenceHelper
-    @Inject lateinit var databaseReference: DatabaseReference
+    @Inject
+    lateinit var jokesPreferenceHelper: JokesPreferenceHelper
+    @Inject
+    lateinit var databaseReference: DatabaseReference
     private val viewModel: JokesViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.S)
@@ -48,13 +50,18 @@ class MainActivity : ComponentActivity() {
                 fetchAppId(showUpdateDialog)
 
                 // Display your navigation
-                Navigation(viewModel = viewModel, jokesPreferenceHelper = jokesPreferenceHelper, context = this@MainActivity)
+                Navigation(
+                    viewModel = viewModel,
+                    jokesPreferenceHelper = jokesPreferenceHelper,
+                    context = this@MainActivity
+                )
 
                 // Show the Update Dialog if necessary
                 if (showUpdateDialog.value) {
                     UpdateAppDialog(
                         onUpdateClick = {
-                            Toast.makeText(this@MainActivity, "Updating...", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, "Updating...", Toast.LENGTH_SHORT)
+                                .show()
                             // Perform update action here
                             showUpdateDialog.value = false
                         },
@@ -68,25 +75,26 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun fetchAppId(showUpdateDialog: MutableState<Boolean>) {
-        databaseReference.child("AppId").addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    // Fetch the AppId value
-                    val versionCode = jokesPreferenceHelper.getInt("versionCode", 0)
-                    val appId = snapshot.getValue(Int::class.java)
-                    if (appId != null && appId > versionCode) {
-                        // Trigger the dialog if AppId is greater than the version code
-                        showUpdateDialog.value = true
+        databaseReference.child("AppId")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        // Fetch the AppId value
+                        val versionCode = jokesPreferenceHelper.getInt("versionCode", 0)
+                        val appId = snapshot.getValue(Int::class.java)
+                        if (appId != null && appId > versionCode) {
+                            // Trigger the dialog if AppId is greater than the version code
+                            showUpdateDialog.value = true
+                        }
+                        Log.d("Firebase", "AppId: $appId")
+                    } else {
+                        Log.e("Firebase", "AppId not found")
                     }
-                    Log.d("Firebase", "AppId: $appId")
-                } else {
-                    Log.e("Firebase", "AppId not found")
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("Firebase", "Database error: ${error.message}")
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("Firebase", "Database error: ${error.message}")
+                }
+            })
     }
 }

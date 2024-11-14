@@ -32,13 +32,13 @@ object AppModule {
     }
 
     @Provides
-    fun retrofit(): Retrofit{
+    fun retrofit(): Retrofit {
         return Retrofit.Builder().baseUrl(AppConstant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
 
     @Provides
-    fun apiService(retrofit: Retrofit): ApiService{
+    fun apiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
 

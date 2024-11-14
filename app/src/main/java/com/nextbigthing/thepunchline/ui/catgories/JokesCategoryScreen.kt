@@ -113,7 +113,13 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
 
         AlertDialog(
             onDismissRequest = { showFilterView = false },
-            title = { Text(text = "Opt Out Categories", color = Color.Black, fontFamily = KanitBlack) },
+            title = {
+                Text(
+                    text = "Opt Out Categories",
+                    color = Color.Black,
+                    fontFamily = KanitBlack
+                )
+            },
             containerColor = Color.White,
             text = {
                 CheckboxDialogContent(checkboxes, checkedStates.value) { index, isChecked ->

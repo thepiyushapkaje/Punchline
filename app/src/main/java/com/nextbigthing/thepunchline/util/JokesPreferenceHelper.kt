@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 
 class JokesPreferenceHelper(context: Context) {
     private val preferenceName = "JokesPreference"
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
+    private val sharedPreferences: SharedPreferences =
+        context.getSharedPreferences(preferenceName, Context.MODE_PRIVATE)
 
     fun saveString(key: String, value: String) {
         val editor = sharedPreferences.edit()

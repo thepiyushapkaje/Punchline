@@ -33,7 +33,12 @@ import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 
 @Composable
-fun CenteredCard(title: String, description: String, onNextArticleClick: () -> Unit, context: Context) {
+fun CenteredCard(
+    title: String,
+    description: String,
+    onNextArticleClick: () -> Unit,
+    context: Context
+) {
     val clipboard =
         LocalContext.current.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     Box(

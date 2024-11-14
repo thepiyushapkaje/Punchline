@@ -27,7 +27,9 @@ fun CustomAppBar(title: String, onBackClick: () -> Unit) {
 
         title = {
             Row(
-                Modifier.fillMaxWidth().padding(0.dp,0.dp,20.dp,0.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(0.dp, 0.dp, 20.dp, 0.dp),
                 horizontalArrangement = Arrangement.Center
             ) {
                 Text(
@@ -44,7 +46,7 @@ fun CustomAppBar(title: String, onBackClick: () -> Unit) {
                     painter = painterResource(id = R.drawable.leftarrow),
                     tint = Color.Black,
                     contentDescription = "Back",
-                    modifier = Modifier.padding(10.dp,0.dp,0.dp,0.dp)
+                    modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 0.dp)
                 )
             }
         },

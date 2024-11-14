@@ -33,8 +33,10 @@ fun JokesScreen(
     jokesResponse?.let { response ->
         val title = response.setup ?: response.joke
         val description = response.delivery ?: ""
-        Surface(color = AppBackgroundColor){
-            CustomAppBar(title = category, onBackClick = { navController.navigate(Screen.DashboardScreen.route) })
+        Surface(color = AppBackgroundColor) {
+            CustomAppBar(
+                title = category,
+                onBackClick = { navController.navigate(Screen.DashboardScreen.route) })
             CenteredCard(
                 title = title,
                 description = description,

@@ -19,28 +19,38 @@ fun UpdateAppDialog(onUpdateClick: () -> Unit, onDismiss: () -> Unit) {
         onDismissRequest = { onDismiss() },
         containerColor = Color.White,
         title = {
-            Text(text = "New Version Available",
-                fontFamily = KanitBlack)
+            Text(
+                text = "New Version Available",
+                fontFamily = KanitBlack
+            )
         },
         text = {
-            Text("A new version of the app is available. Please update to enjoy the latest features and improvements.",
-                fontFamily = KanitBlack)
+            Text(
+                "A new version of the app is available. Please update to enjoy the latest features and improvements.",
+                fontFamily = KanitBlack
+            )
         },
         confirmButton = {
-            Button(onClick = { onUpdateClick() },
+            Button(
+                onClick = { onUpdateClick() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Gray,
                     contentColor = Color.White
-                )) {
-                Text("Update",
-                    fontFamily = KanitBlack)
+                )
+            ) {
+                Text(
+                    "Update",
+                    fontFamily = KanitBlack
+                )
             }
         },
         dismissButton = {
             TextButton(onClick = { onDismiss() }) {
-                Text("Later",
+                Text(
+                    "Later",
                     fontFamily = KanitBlack,
-                    color = Color.Black)
+                    color = Color.Black
+                )
             }
         },
         properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
