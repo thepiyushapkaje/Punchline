@@ -1,6 +1,9 @@
 package com.nextbigthing.thepunchline.ui.jokes
 
 import android.content.Context
+import android.util.Log
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,7 +39,8 @@ fun JokesScreen(
         Surface(color = AppBackgroundColor) {
             CustomAppBar(
                 title = category,
-                onBackClick = { navController.navigate(Screen.DashboardScreen.route) })
+                onBackClick = { navController.navigate(Screen.DashboardScreen.route) }
+            )
             CenteredCard(
                 title = title,
                 description = description,
@@ -44,5 +48,7 @@ fun JokesScreen(
                 context = context
             )
         }
+    } ?: run {
+        Log.e("JokesScreen", "Jokes response is null.")
     }
 }

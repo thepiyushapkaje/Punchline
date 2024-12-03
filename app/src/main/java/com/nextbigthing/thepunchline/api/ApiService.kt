@@ -9,9 +9,9 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("joke/{category}")
-    fun getJokesFromApi(
+    suspend fun getJokesFromApi(
         @Path("category") category: String,
         @Query("blacklistFlags") flags: String
-    ): Call<Jokes>
+    ): Jokes
 
 }

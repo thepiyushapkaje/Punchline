@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.nextbigthing.thepunchline.api.ApiService
 import com.nextbigthing.thepunchline.data.Jokes
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,16 +22,13 @@ class JokesViewModel @Inject constructor(private val apiService: ApiService) : V
     var jokesResponse: LiveData<Jokes> = _jokesResponse
 
     fun fetchJokes(category: String, flags: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            apiService.getJokesFromApi(category, flags).enqueue(object : Callback<Jokes> {
-                override fun onResponse(call: Call<Jokes>, response: Response<Jokes>) {
-                    _jokesResponse.value = response.body()
-                }
-
-                override fun onFailure(call: Call<Jokes>, t: Throwable) {
-                    Log.d("TAG", "onResponse: ${t.message}")
-                }
-            })
+        viewModelScope.launch {
+            try {
+                val jokes = apiService.getJokesFromApi(category, flags)
+                _jokesResponse.value = jokes
+            } catch (e: Exception) {
+                Log.e("JokesViewModel", "Exception occurred: ${e.message}")
+            }
         }
     }
 }

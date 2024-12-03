@@ -72,6 +72,7 @@ fun MainScreen(navController: NavController, jokesPreferenceHelper: JokesPrefere
                             )
                         }
                         IconButton(onClick = {
+//                            throw RuntimeException("Test Crash")
                             navController.navigate(Screen.AboutScreen.route)
                         }) {
                             Icon(
