@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "293303485894",
+    "firebase_url": "https://nextbigthing-5cd6b-default-rtdb.firebaseio.com",
     "project_id": "nextbigthing-5cd6b",
-    "storage_bucket": "nextbigthing-5cd6b.appspot.com"
+    "storage_bucket": "nextbigthing-5cd6b.firebasestorage.app"
   },
   "client": [
     {
