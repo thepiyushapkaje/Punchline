@@ -30,7 +30,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nextbigthing.thepunchline.R
+import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
+import com.nextbigthing.thepunchline.ui.theme.PalletTint
 
 @Composable
 fun CenteredCard(
@@ -46,7 +48,7 @@ fun CenteredCard(
         contentAlignment = Alignment.Center,
     ) {
         Card(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier.padding(16.dp).background(AppBackgroundColor),
             onClick = onNextArticleClick
         ) {
             Column(
@@ -64,7 +66,8 @@ fun CenteredCard(
                     lineHeight = if (title.length > 60) 32.sp else if (title.length > 40) 38.sp else 48.sp,
                     textAlign = TextAlign.Left,
                     fontFamily = KanitBlack,
-                    softWrap = true
+                    softWrap = true,
+                    color = PalletTint
                 )
                 Text(
                     text = description,

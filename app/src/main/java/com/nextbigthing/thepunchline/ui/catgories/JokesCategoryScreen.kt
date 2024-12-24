@@ -27,10 +27,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.nextbigthing.thepunchline.R
+import com.nextbigthing.thepunchline.navigation.screens.Screen
 import com.nextbigthing.thepunchline.ui.component.CenteredTextGrid
 import com.nextbigthing.thepunchline.ui.component.CenteredTextList
 import com.nextbigthing.thepunchline.ui.component.CheckboxDialogContent
-import com.nextbigthing.thepunchline.navigation.screens.Screen
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 import com.nextbigthing.thepunchline.util.AppConstant

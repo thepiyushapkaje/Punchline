@@ -12,5 +12,7 @@ object AppConstant {
         R.drawable.spooky,
         R.drawable.xmas
     )
+    const val VERSION_CODE = "versionCode"
+    const val VERSION_NAME = "versionName"
     const val BASE_URL = "https://v2.jokeapi.dev/"
 }

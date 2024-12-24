@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener
 import com.nextbigthing.thepunchline.navigation.Navigation
 import com.nextbigthing.thepunchline.ui.component.UpdateAppDialog
 import com.nextbigthing.thepunchline.ui.theme.ThePunchlineTheme
+import com.nextbigthing.thepunchline.util.AppConstant
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,7 +40,9 @@ class MainActivity : ComponentActivity() {
         // Get the version code of the app
         val packageManager = packageManager.getPackageInfo(packageName, 0)
         val versionCode = packageManager.versionCode
-        jokesPreferenceHelper.saveInt("versionCode", versionCode)
+        val versionName = packageManager.versionName
+        jokesPreferenceHelper.saveInt(AppConstant.VERSION_CODE, versionCode)
+        jokesPreferenceHelper.saveString(AppConstant.VERSION_NAME, versionName)
 
         // MutableState to control the dialog visibility
         val showUpdateDialog = mutableStateOf(false)

@@ -30,6 +30,8 @@ import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.component.CustomAppBar
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
+import com.nextbigthing.thepunchline.util.AppConstant
+import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 
 @Composable
 fun AboutScreen(navController: NavController, contextT: Context) {
@@ -141,7 +143,12 @@ fun AboutScreen(navController: NavController, contextT: Context) {
 
             // Version Info (Optional)
             Text(
-                text = "Version 1.0.0",
+                text = "Version: ${
+                    JokesPreferenceHelper(contextT).getString(
+                        AppConstant.VERSION_NAME,
+                        "1.0"
+                    )
+                }",
                 fontFamily = KanitBlack,
                 modifier = Modifier.padding(top = 16.dp)
             )
