@@ -1,5 +1,8 @@
 package com.nextbigthing.thepunchline.ui
 
+import android.content.ContentValues.TAG
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +21,7 @@ import com.nextbigthing.thepunchline.navigation.Navigation
 import com.nextbigthing.thepunchline.ui.component.UpdateAppDialog
 import com.nextbigthing.thepunchline.ui.theme.ThePunchlineTheme
 import com.nextbigthing.thepunchline.util.AppConstant
+import com.nextbigthing.thepunchline.util.AppConstant.APP_PACKAGE_NAME
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,9 +67,9 @@ class MainActivity : ComponentActivity() {
                 if (showUpdateDialog.value) {
                     UpdateAppDialog(
                         onUpdateClick = {
-                            Toast.makeText(this@MainActivity, "Updating...", Toast.LENGTH_SHORT)
-                                .show()
-                            // Perform update action here
+                            // Redirect to Google Play Store
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$APP_PACKAGE_NAME"))
+                            startActivity(intent)
                             showUpdateDialog.value = false
                         },
                         onDismiss = {
@@ -83,8 +87,9 @@ class MainActivity : ComponentActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
                         // Fetch the AppId value
-                        val versionCode = jokesPreferenceHelper.getInt("versionCode", 0)
+                        val versionCode = jokesPreferenceHelper.getInt(AppConstant.VERSION_CODE, 0)
                         val appId = snapshot.getValue(Int::class.java)
+                        Log.d(TAG, "versionCode: $versionCode & appId: $appId")
                         if (appId != null && appId > versionCode) {
                             // Trigger the dialog if AppId is greater than the version code
                             showUpdateDialog.value = true

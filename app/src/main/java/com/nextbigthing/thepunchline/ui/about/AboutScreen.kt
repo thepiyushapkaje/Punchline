@@ -25,12 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavController
 import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.component.CustomAppBar
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 import com.nextbigthing.thepunchline.util.AppConstant
+import com.nextbigthing.thepunchline.util.AppConstant.APP_PACKAGE_NAME
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 
 @Composable
@@ -123,7 +125,7 @@ fun AboutScreen(navController: NavController, contextT: Context) {
 
             // Review Button
             Button(
-                onClick = {},
+                onClick = {redirectToReviewScreen(contextT)},
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
@@ -153,5 +155,23 @@ fun AboutScreen(navController: NavController, contextT: Context) {
                 modifier = Modifier.padding(top = 16.dp)
             )
         }
+    }
+}
+
+fun redirectToReviewScreen(context: Context) {
+    try {
+        startActivity(context,
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("market://details?id=$APP_PACKAGE_NAME")
+            ), null
+        )
+    } catch (e: android.content.ActivityNotFoundException) {
+        startActivity(context,
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://play.google.com/store/apps/details?id=$APP_PACKAGE_NAME")
+            ), null
+        )
     }
 }
