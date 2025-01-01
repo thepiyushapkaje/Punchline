@@ -2,17 +2,15 @@ package com.nextbigthing.thepunchline.ui.jokes
 
 import android.content.Context
 import android.util.Log
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavController
+import com.nextbigthing.thepunchline.navigation.screens.Screen
 import com.nextbigthing.thepunchline.ui.component.CenteredCard
 import com.nextbigthing.thepunchline.ui.component.CustomAppBar
-import com.nextbigthing.thepunchline.navigation.screens.Screen
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
