@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "293303485894",
+    "firebase_url": "https://nextbigthing-5cd6b-default-rtdb.firebaseio.com",
+    "project_id": "nextbigthing-5cd6b",
+    "storage_bucket": "nextbigthing-5cd6b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293303485894:android:43b1bb73fefc484d501ec7",
+        "android_client_info": {
+          "package_name": "com.nextbigthing.thepunchline"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKzPy0mXdJfKs3NWF5t4RQk63xgprH3fY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

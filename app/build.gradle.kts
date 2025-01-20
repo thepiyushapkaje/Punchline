@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
+    alias(libs.plugins.googleFirebaseCrashlytics)
 }
 
 android {
@@ -13,8 +15,8 @@ android {
         applicationId = "com.nextbigthing.thepunchline"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 8
+        versionName = "1.7"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -24,7 +26,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -52,9 +55,15 @@ android {
 }
 
 dependencies {
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
     implementation (libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.runtime.livedata)
     implementation (libs.hilt.android)
+    implementation(libs.firebase.database)
+    implementation(platform(libs.firebase.bom.v3360))
+    implementation(libs.google.firebase.crashlytics)
+    implementation(libs.google.firebase.analytics)
     kapt (libs.hilt.compiler)
     implementation (libs.kotlin.stdlib.jdk8)
     implementation (libs.retrofit)

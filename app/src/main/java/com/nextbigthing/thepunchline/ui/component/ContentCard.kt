@@ -3,6 +3,7 @@ package com.nextbigthing.thepunchline.ui.component
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -29,18 +30,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nextbigthing.thepunchline.R
+import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
+import com.nextbigthing.thepunchline.ui.theme.PalletTint
 
 @Composable
-fun CenteredCard(title: String, description: String, onNextArticleClick: () -> Unit) {
+fun CenteredCard(
+    title: String,
+    description: String,
+    onNextArticleClick: () -> Unit,
+    context: Context
+) {
     val clipboard =
         LocalContext.current.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Card(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp).background(AppBackgroundColor),
+            onClick = onNextArticleClick
         ) {
             Column(
                 modifier = Modifier
@@ -53,17 +62,18 @@ fun CenteredCard(title: String, description: String, onNextArticleClick: () -> U
                     modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight(Alignment.CenterVertically, false),
-                    fontSize = if (title.length > 60) 24.sp else if (title.length > 40) 34.sp else 44.sp,
-                    lineHeight = if (title.length > 60) 24.sp else if (title.length > 40) 34.sp else 44.sp,
+                    fontSize = if (title.length > 60) 32.sp else if (title.length > 40) 38.sp else 48.sp,
+                    lineHeight = if (title.length > 60) 32.sp else if (title.length > 40) 38.sp else 48.sp,
                     textAlign = TextAlign.Left,
                     fontFamily = KanitBlack,
-                    softWrap = true
+                    softWrap = true,
+                    color = PalletTint
                 )
                 Text(
                     text = description,
                     modifier = Modifier.fillMaxWidth(),
-                    fontSize = if (title.length > 60) 18.sp else if (title.length > 40) 28.sp else 38.sp,
-                    lineHeight = if (title.length > 60) 18.sp else if (title.length > 40) 28.sp else 38.sp,
+                    fontSize = if (title.length > 60) 26.sp else if (title.length > 40) 32.sp else 42.sp,
+                    lineHeight = if (title.length > 60) 26.sp else if (title.length > 40) 32.sp else 42.sp,
                     textAlign = TextAlign.Left,
                     fontFamily = KanitBlack,
                     color = Color.Gray,
@@ -86,6 +96,7 @@ fun CenteredCard(title: String, description: String, onNextArticleClick: () -> U
                     val textToCopy = title + "\n" + description
                     val clip = ClipData.newPlainText("label", textToCopy)
                     clipboard.setPrimaryClip(clip)
+                    Toast.makeText(context, "Joke Copied Successfully", Toast.LENGTH_SHORT).show()
                 },
                 modifier = Modifier
                     .height(50.dp)

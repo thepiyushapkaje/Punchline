@@ -4,15 +4,21 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
 
 @Composable
-fun CheckboxDialogContent(checkboxes: List<String>, checkedStates: List<Boolean>, onCheckboxChange: (Int, Boolean) -> Unit) {
+fun CheckboxDialogContent(
+    checkboxes: List<String>,
+    checkedStates: List<Boolean>,
+    onCheckboxChange: (Int, Boolean) -> Unit
+) {
     Column {
         checkboxes.forEachIndexed { index, label ->
             Row(
@@ -21,9 +27,14 @@ fun CheckboxDialogContent(checkboxes: List<String>, checkedStates: List<Boolean>
                 Checkbox(
                     checked = checkedStates[index],
                     onCheckedChange = { onCheckboxChange(index, it) },
-                    modifier = Modifier.padding(end = 8.dp)
+                    modifier = Modifier.padding(end = 8.dp),
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = Color.Black,    // Color when the checkbox is checked
+                        uncheckedColor = Color.Gray,   // Color when the checkbox is unchecked
+                        checkmarkColor = Color.White   // Color of the checkmark inside the checkbox
+                    )
                 )
-                Text(text = label, fontFamily = KanitBlack)
+                Text(text = label, fontFamily = KanitBlack, color = Color.Black)
             }
         }
     }

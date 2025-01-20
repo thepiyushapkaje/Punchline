@@ -1,28 +1,113 @@
 package com.nextbigthing.thepunchline.ui
 
+import android.content.ContentValues.TAG
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.nextbigthing.thepunchline.navigation.Navigation
+import com.nextbigthing.thepunchline.ui.component.UpdateAppDialog
 import com.nextbigthing.thepunchline.ui.theme.ThePunchlineTheme
+import com.nextbigthing.thepunchline.util.AppConstant
+import com.nextbigthing.thepunchline.util.AppConstant.APP_PACKAGE_NAME
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
+import com.nextbigthing.thepunchline.viewModel.NewJokesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject lateinit var jokesPreferenceHelper: JokesPreferenceHelper
-    private val viewModel:JokesViewModel by viewModels()
+    @Inject
+    lateinit var jokesPreferenceHelper: JokesPreferenceHelper
+    @Inject
+    lateinit var databaseReference: DatabaseReference
+    private val viewModel: JokesViewModel by viewModels()
+    private val newViewModel: NewJokesViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         jokesPreferenceHelper.clearPreferences()
+        enableEdgeToEdge()
+
+        // Get the version code of the app
+        val packageManager = packageManager.getPackageInfo(packageName, 0)
+        val versionCode = packageManager.versionCode
+        val versionName = packageManager.versionName
+        jokesPreferenceHelper.saveInt(AppConstant.VERSION_CODE, versionCode)
+        jokesPreferenceHelper.saveString(AppConstant.VERSION_NAME, versionName)
+
+        // MutableState to control the dialog visibility
+        val showUpdateDialog = mutableStateOf(false)
+
         setContent {
             ThePunchlineTheme {
-                Navigation(viewModel = viewModel, jokesPreferenceHelper = jokesPreferenceHelper)
+                // Fetch the AppId when the activity starts
+                fetchAppId(showUpdateDialog)
+
+                // Display your navigation
+                Navigation(
+                    viewModel = viewModel,
+                    newViewModel = newViewModel,
+                    jokesPreferenceHelper = jokesPreferenceHelper,
+                    context = this@MainActivity
+                )
+
+                // Show the Update Dialog if necessary
+                if (showUpdateDialog.value) {
+                    UpdateAppDialog(
+                        onUpdateClick = {
+                            // Redirect to Google Play Store
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$APP_PACKAGE_NAME"))
+                            startActivity(intent)
+                            showUpdateDialog.value = false
+                        },
+                        onDismiss = {
+                            showUpdateDialog.value = false
+                        }
+                    )
+                }
             }
         }
+    }
+
+    private fun fetchAppId(showUpdateDialog: MutableState<Boolean>) {
+        databaseReference.child("AppId")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        // Fetch the AppId value
+                        val versionCode = jokesPreferenceHelper.getInt(AppConstant.VERSION_CODE, 0)
+                        val appId = snapshot.getValue(Int::class.java)
+                        Log.d(TAG, "versionCode: $versionCode & appId: $appId")
+                        if (appId != null && appId > versionCode) {
+                            // Trigger the dialog if AppId is greater than the version code
+                            showUpdateDialog.value = true
+                        }
+                        Log.d("Firebase", "AppId: $appId")
+                    } else {
+                        Log.e("Firebase", "AppId not found")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("Firebase", "Database error: ${error.message}")
+                }
+            })
     }
 }

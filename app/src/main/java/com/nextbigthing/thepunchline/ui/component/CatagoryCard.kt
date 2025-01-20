@@ -18,6 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -25,16 +27,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
+import com.nextbigthing.thepunchline.ui.theme.PalletForeground
+import com.nextbigthing.thepunchline.ui.theme.PalletTint
 
 @Composable
 fun CenteredTextCard(text: String, drawable: Int, onClick: () -> Unit) {
+
+    val configuration = LocalConfiguration.current
+    val screenWidthPx = (configuration.screenWidthDp / 2) - 10
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = Color.White
+            containerColor = PalletForeground
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .height(200.dp)
+            .height(screenWidthPx.dp)
             .padding(6.dp)
             .clickable { onClick() }
             // Set background color
@@ -49,6 +56,7 @@ fun CenteredTextCard(text: String, drawable: Int, onClick: () -> Unit) {
             Image(
                 painter = painterResource(id = drawable),
                 contentDescription = null,
+                colorFilter = ColorFilter.tint(PalletTint),
                 modifier = Modifier
                     .align(Alignment.Center)
                     .size(50.dp) // Adjust size as needed
@@ -62,7 +70,7 @@ fun CenteredTextCard(text: String, drawable: Int, onClick: () -> Unit) {
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 32.dp) // Adjust padding as needed
-                    .background(Color.White)
+                    .background(PalletForeground)
                     .fillMaxWidth(),
                 fontWeight = FontWeight.Bold
             )
