@@ -6,7 +6,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,7 +24,6 @@ import com.nextbigthing.thepunchline.util.AppConstant
 import com.nextbigthing.thepunchline.util.AppConstant.APP_PACKAGE_NAME
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
-import com.nextbigthing.thepunchline.viewModel.NewJokesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -37,7 +35,6 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var databaseReference: DatabaseReference
     private val viewModel: JokesViewModel by viewModels()
-    private val newViewModel: NewJokesViewModel by viewModels()
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +60,6 @@ class MainActivity : ComponentActivity() {
                 // Display your navigation
                 Navigation(
                     viewModel = viewModel,
-                    newViewModel = newViewModel,
                     jokesPreferenceHelper = jokesPreferenceHelper,
                     context = this@MainActivity
                 )

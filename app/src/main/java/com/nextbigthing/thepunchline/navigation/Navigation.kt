@@ -15,10 +15,9 @@ import com.nextbigthing.thepunchline.ui.catgories.MainScreen
 import com.nextbigthing.thepunchline.ui.jokes.JokesScreen
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
 import com.nextbigthing.thepunchline.viewModel.JokesViewModel
-import com.nextbigthing.thepunchline.viewModel.NewJokesViewModel
 
 @Composable
-fun Navigation(viewModel: JokesViewModel, newViewModel: NewJokesViewModel,
+fun Navigation(viewModel: JokesViewModel,
                jokesPreferenceHelper: JokesPreferenceHelper, context: Context) {
     val navController = rememberNavController()
 
@@ -54,7 +53,6 @@ fun Navigation(viewModel: JokesViewModel, newViewModel: NewJokesViewModel,
                     category = it,
                     jokesPreferenceHelper = jokesPreferenceHelper,
                     viewModel = viewModel,
-                    newViewModel = newViewModel,
                     context = context
                 )
             }

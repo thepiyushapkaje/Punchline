@@ -31,6 +31,7 @@ import com.nextbigthing.thepunchline.R
 import com.nextbigthing.thepunchline.ui.component.CustomAppBar
 import com.nextbigthing.thepunchline.ui.theme.AppBackgroundColor
 import com.nextbigthing.thepunchline.ui.theme.KanitBlack
+import com.nextbigthing.thepunchline.ui.theme.PalletTint
 import com.nextbigthing.thepunchline.util.AppConstant
 import com.nextbigthing.thepunchline.util.AppConstant.APP_PACKAGE_NAME
 import com.nextbigthing.thepunchline.util.JokesPreferenceHelper
@@ -55,7 +56,7 @@ fun AboutScreen(navController: NavController, contextT: Context) {
 
             // App Icon (Replace with your actual image resource)
             Image(
-                painter = painterResource(id = R.drawable.img),
+                painter = painterResource(id = R.drawable.lol_icon),
                 contentDescription = "App Icon",
                 modifier = Modifier
                     .size(150.dp)
@@ -81,12 +82,23 @@ fun AboutScreen(navController: NavController, contextT: Context) {
                     .fillMaxWidth()
             )
 
+            Spacer(modifier = Modifier.height(4.dp))
+
+            Text(
+                text = "Ready to laugh? even when it’s a little twisted? Dark & Witty brings you the perfect mix of humor from light-hearted puns to dark, sarcastic one-liners all in one place! Whether you're into clever programming jokes, dark humor, or festive Christmas puns, this app has a joke for every mood.",
+                textAlign = TextAlign.Justify,
+                fontFamily = KanitBlack,
+                modifier = Modifier
+                    .padding(18.dp)
+                    .fillMaxWidth()
+            )
+
             Spacer(modifier = Modifier.height(8.dp))
 
             // Disclaimer Text for Jokes
             Text(
                 text = "Disclaimer: The jokes provided by The Punchline are intended for entertainment purposes only. Humor is subjective, and some jokes may not be suitable for all audiences. Please enjoy responsibly.",
-                textAlign = TextAlign.Center,
+                textAlign = TextAlign.Justify,
                 fontFamily = KanitBlack,
                 fontSize = 16.sp,
                 modifier = Modifier
@@ -111,13 +123,14 @@ fun AboutScreen(navController: NavController, contextT: Context) {
                     .height(48.dp)
                     .padding(20.dp, 0.dp, 20.dp, 0.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black
+                    containerColor = PalletTint,
+                    contentColor = AppBackgroundColor
                 ),
             ) {
                 Text(
                     "Privacy Policy",
-                    fontFamily = KanitBlack
+                    fontFamily = KanitBlack,
+                    fontSize = 18.sp
                 )
             }
 
@@ -125,19 +138,20 @@ fun AboutScreen(navController: NavController, contextT: Context) {
 
             // Review Button
             Button(
-                onClick = {redirectToReviewScreen(contextT)},
+                onClick = { redirectToReviewScreen(contextT) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(48.dp)
                     .padding(20.dp, 0.dp, 20.dp, 0.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.Black
+                    containerColor = PalletTint,
+                    contentColor = AppBackgroundColor
                 ),
             ) {
                 Text(
                     "Leave a Review",
-                    fontFamily = KanitBlack
+                    fontFamily = KanitBlack,
+                    fontSize = 18.sp
                 )
             }
 
@@ -160,14 +174,16 @@ fun AboutScreen(navController: NavController, contextT: Context) {
 
 fun redirectToReviewScreen(context: Context) {
     try {
-        startActivity(context,
+        startActivity(
+            context,
             Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("market://details?id=$APP_PACKAGE_NAME")
             ), null
         )
     } catch (e: android.content.ActivityNotFoundException) {
-        startActivity(context,
+        startActivity(
+            context,
             Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("https://play.google.com/store/apps/details?id=$APP_PACKAGE_NAME")
