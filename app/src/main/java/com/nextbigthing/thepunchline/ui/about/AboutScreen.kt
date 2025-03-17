@@ -85,7 +85,7 @@ fun AboutScreen(navController: NavController, contextT: Context) {
             Spacer(modifier = Modifier.height(4.dp))
 
             Text(
-                text = "Ready to laugh? even when it’s a little twisted? Dark & Witty brings you the perfect mix of humor from light-hearted puns to dark, sarcastic one-liners all in one place! Whether you're into clever programming jokes, dark humor, or festive Christmas puns, this app has a joke for every mood.",
+                text = "Ready to laugh? Punchline brings you the perfect mix of humor—from light-hearted puns to clever, sarcastic one-liners—all in one place! Whether you're into witty programming jokes, relatable everyday humor, or festive Christmas puns, this app has a joke for every mood.",
                 textAlign = TextAlign.Justify,
                 fontFamily = KanitBlack,
                 modifier = Modifier
